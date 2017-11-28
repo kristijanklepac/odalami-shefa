@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odalami Shefa</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">JA (*moja snaga)</h1>
+            <div class="prikupisnagubar">
+                <div
+                        class="prikupisnagubar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{ 'background-color': mojBackColor, width: mojaSnaga + '%' }">
+                    {{ mojaSnaga }} 
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">SHEF (*shefova snaga)</h1>
+            <div class="prikupisnagubar">
+                <div
+                        class="prikupisnagubar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{'background-color': shefBackColor, width: shefovaSnaga + '%'}">
+                    {{ shefovaSnaga }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!igraTece">
+        <div class="small-12 columns">
+            <button id="start-game" @click="pokreniNovuIgru">POKRENI NOVU IGRU</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="napad" @click="napad">ODALAMI</button>
+            <button id="special-napad" @click="jaciNapad">ODALAMI JAČE</button>
+            <button id="prikupisnagu" @click="povratiSnagu">PRIKUPI SNAGU</button>
+            <button id="odustani" @click="odustani">PREDAJ SE</button>
+        </div>
+    </section>
+    <section class="row log" v-if="arrpor.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="poruka in arrpor"
+                    :class="{'ja-por': poruka.isJa, 'shef-por': !poruka.isJa}">
+                    {{ poruka.text }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
